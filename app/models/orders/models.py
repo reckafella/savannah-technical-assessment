@@ -14,9 +14,10 @@ class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE,
                                  related_name='orders')
-    order_date = models.DateTimeField(auto_now_add=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    item = models.CharField(max_length=200)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=255, choices=OrderStatus.choices)
+    order_date = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
