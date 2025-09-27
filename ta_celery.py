@@ -1,10 +1,12 @@
-from os import environ
+import os
 from celery import Celery
 
 
-environ.setdefault('DJANGO_SETTINGS_MODULE', 'savannah_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                      'savannah_project.settings')
 
 app = Celery('savannah_project')
 
-app.config_from_object('django.conf:settings', namespace='CELERY')
+app.config_from_object('django.conf:settings',
+                       namespace='CELERY')
 app.autodiscover_tasks()

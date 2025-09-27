@@ -1,4 +1,4 @@
-from ta_celery import shared_task
+from celery import shared_task
 from app.models.orders.models import Order
 from app.tasks.sms_service import SMSService
 import logging
