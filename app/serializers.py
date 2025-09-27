@@ -8,7 +8,7 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = ['id', 'name', 'code', 'phone_number',
-                  'email', 'created_at', 'updated_at']
+                  'email', 'customer_id', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at']
 
     def validate_code(self, value):
@@ -25,7 +25,7 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'customer', 'customer_details',
-                  'customer_code', 'order_date', 'total_amount',
+                  'customer_code', 'item', 'order_date', 'amount',
                   'status', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at',
                             'order_date', 'customer']

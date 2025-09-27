@@ -16,8 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
+
+
+def api_root(request):
+    """API root endpoint"""
+    return JsonResponse({
+        'message': 'Savannah Technical Assessment API',
+        'version': 'v1',
+        'endpoints': {
+            'customers': '/api/v1/customers/',
+            'orders': '/api/v1/orders/',
+            'auth_info': '/api/v1/auth/info/',
+            'create_app': '/api/v1/auth/create-app/',
+            'oauth': {
+                'token': '/oauth/token/',
+                'revoke': '/oauth/revoke_token/',
+            }
+        }
+    })
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('app.urls'))
+    path('', api_root, name='api-root'),
+    path('api/v1/', include('app.urls')),
+    path('oauth/', include('oauth2_provider.urls',
+                           namespace='oauth2_provider')),
 ]

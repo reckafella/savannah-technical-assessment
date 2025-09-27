@@ -60,6 +60,9 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 staticfiles/
+API_FIXES_SUMMARY.md
+TEST_FIXES_SUMMARY.md
+test_endpoints.py
 
 # Flask stuff:
 instance/
